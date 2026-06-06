@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Italiano">
+<title>Italiano · Toscana 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Google+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+:root {
+  --coral:    #C1440E;
+  --coral-h:  #A53309;
+  --coral-bg: #FAF0EB;
+  --amber:    #A86209;
+  --amber-bg: #FEF4E3;
+  --green:    #276745;
+  --green-bg: #E7F5EE;
+  --blue:     #1E4FA8;
+  --blue-bg:  #EAF0FB;
+  --plum:     #6B2FA0;
+  --plum-bg:  #F4EDFB;
+  --cream:    #FDF8F4;
+  --card:     #FFFFFF;
+  --dark:     #1C0E08;
+  --text:     #3A2010;
+  --muted:    #7A5040;
+  --subtle:   #A88070;
+  --border:   #EDD8CC;
+  --divider:  #F5EBE4;
+  --sans:     'Google Sans', system-ui, -apple-system, sans-serif;
+  --serif:    'Cormorant Garamond', 'Georgia', serif;
+  --sat:      env(safe-area-inset-top, 0px);
+  --sab:      env(safe-area-inset-bottom, 0px);
+}
+
+html { background: var(--cream); }
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Layout ─── */
+.app { max-width: 430px; margin: 0 auto; min-height: 100dvh; }
+
+/* ─── Header ─── */
+.hdr {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: calc(var(--sat) + 14px) 20px 0;
+}
+.hdr-row {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 14px;
+}
+.brand {
+  font-family: var(--serif);
+  font-size: 23px; font-weight: 600; font-style: italic;
+  color: var(--coral); letter-spacing: 0.01em; line-height: 1;
+}
+.brand-meta { font-size: 11px; color: var(--subtle); line-height: 1; }
+
+/* Progress pills */
+.overall-prog {
+  display: flex; gap: 5px; margin-bottom: 13px; align-items: center;
+}
+.prog-pip {
+  flex: 1; height: 4px; border-radius: 2px;
+  background: var(--divider); transition: background .35s;
+}
+.prog-label { font-size: 11px; color: var(--subtle); white-space: nowrap; margin-left: 4px; }
+
+/* Tabs */
+.tabs {
+  display: flex; gap: 5px; overflow-x: auto; padding-bottom: 13px;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex-shrink: 0; padding: 6px 15px; border-radius: 20px;
+  border: 1px solid var(--border); background: transparent;
+  font-family: var(--sans); font-size: 13px; color: var(--subtle);
+  cursor: pointer; transition: all .2s; white-space: nowrap;
+}
+.tab.on { border-color: transparent; color: #fff; font-weight: 500; }
+
+/* ─── Content ─── */
+.content { padding: 26px 20px calc(var(--sab) + 56px); }
+
+/* Hero */
+.hero-eyebrow {
+  font-size: 11px; text-transform: uppercase; letter-spacing: .14em;
+  color: var(--subtle); font-weight: 500; margin-bottom: 5px;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: 40px; font-weight: 600; color: var(--dark);
+  line-height: 1.08; margin-bottom: 5px;
+}
+.hero-sub { font-size: 14px; color: var(--muted); }
+.hero-rule { height: 3px; width: 50px; border-radius: 2px; margin: 14px 0 28px; }
+
+/* Section labels */
+.sec {
+  font-size: 10px; text-transform: uppercase; letter-spacing: .16em;
+  color: var(--subtle); font-weight: 500; margin-bottom: 11px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sec::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* Cards */
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 18px; padding: 16px; margin-bottom: 20px;
+}
+
+/* Rhythm */
+.rhy { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.rhy-cell {
+  border-radius: 12px; padding: 11px 8px; text-align: center;
+  background: var(--coral-bg);
+}
+.rhy-t { font-size: 10px; color: var(--coral); font-weight: 500; text-transform: uppercase; letter-spacing: .06em; }
+.rhy-n { font-size: 14px; font-weight: 500; color: var(--dark); margin-top: 3px; }
+.rhy-d { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+
+/* Materials */
+.mat { display: flex; align-items: flex-start; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--divider); }
+.mat:last-child { border-bottom: none; padding-bottom: 0; }
+.mat-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.ic-r { background: var(--coral-bg); }
+.ic-g { background: var(--green-bg); }
+.ic-a { background: var(--amber-bg); }
+.mat-lbl { font-size: 10px; font-weight: 500; color: var(--subtle); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 3px; }
+.mat-txt { font-size: 13px; color: var(--text); line-height: 1.5; }
+
+/* Grammar tags */
+.g-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.g-tag { font-size: 12px; padding: 4px 12px; border-radius: 20px; border: 1px solid; }
+
+/* Phrases */
+.phrase-list { display: flex; flex-direction: column; }
+.phrase {
+  padding: 11px 0; border-bottom: 1px solid var(--divider);
+  cursor: pointer; user-select: none;
+  transition: opacity .15s;
+}
+.phrase:last-of-type { border-bottom: none; }
+.phrase:active { opacity: .7; }
+.p-it {
+  font-family: var(--serif);
+  font-size: 20px; font-weight: 500; color: var(--dark); line-height: 1.25;
+}
+.p-de { font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+
+/* FC start button */
+.fc-btn {
+  width: 100%; margin-top: 14px; padding: 13px 16px;
+  border: none; border-radius: 13px;
+  font-family: var(--sans); font-size: 14px; font-weight: 500;
+  color: #fff; cursor: pointer; display: flex; align-items: center;
+  justify-content: center; gap: 8px; transition: opacity .2s; letter-spacing: .02em;
+}
+.fc-btn:active { opacity: .82; }
+
+/* Tip */
+.tip {
+  border-radius: 0 14px 14px 0; border-left: 3px solid var(--coral);
+  background: var(--coral-bg); padding: 14px 16px; margin-bottom: 20px;
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.tip-icon { font-size: 20px; flex-shrink: 0; line-height: 1; }
+.tip-lbl { font-size: 10px; font-weight: 500; color: var(--coral); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 4px; }
+.tip-body { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* Homework */
+.hw-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid var(--divider);
+  cursor: pointer; user-select: none;
+}
+.hw-row:last-of-type { border-bottom: none; }
+.hw-cb {
+  width: 24px; height: 24px; border-radius: 50%;
+  border: 2px solid var(--border); flex-shrink: 0;
+  margin-top: 1px; display: flex; align-items: center;
+  justify-content: center; transition: all .2s; font-size: 12px;
+  color: transparent;
+}
+.hw-cb.done { background: var(--green); border-color: var(--green); color: #fff; }
+.hw-label { font-size: 14px; color: var(--text); line-height: 1.5; transition: color .2s; }
+.hw-label.done { color: var(--subtle); text-decoration: line-through; }
+.hw-prog-wrap { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.hw-bar { flex: 1; height: 6px; background: var(--divider); border-radius: 3px; overflow: hidden; }
+.hw-fill { height: 100%; border-radius: 3px; transition: width .35s ease; }
+.hw-pct { font-size: 12px; color: var(--muted); white-space: nowrap; font-weight: 500; }
+
+/* ─── Flashcard Overlay ─── */
+.fco {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(28, 14, 8, 0.93);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: calc(var(--sat) + 24px) 24px calc(var(--sab) + 24px);
+  opacity: 0; pointer-events: none; transition: opacity .25s;
+}
+.fco.vis { opacity: 1; pointer-events: all; }
+
+.fco-top {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; max-width: 380px; margin-bottom: 28px;
+}
+.fco-close {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(255,255,255,.12); border: none;
+  color: #fff; font-size: 18px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans); line-height: 1;
+}
+.fco-cnt { font-size: 13px; color: rgba(255,255,255,.55); }
+.fco-wn {
+  font-family: var(--serif); font-size: 15px;
+  font-style: italic; color: rgba(255,255,255,.75);
+}
+
+/* 3-D card */
+.scene {
+  width: 100%; max-width: 380px; height: 235px;
+  perspective: 1000px; margin-bottom: 28px; cursor: pointer;
+}
+.inner {
+  width: 100%; height: 100%; position: relative;
+  transform-style: preserve-3d;
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+}
+.inner.flip { transform: rotateY(180deg); }
+.face {
+  position: absolute; inset: 0;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: 22px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 28px 24px; text-align: center;
+}
+.f-front { background: var(--card); }
+.f-back  { background: var(--coral-bg); border: 2px solid var(--coral); transform: rotateY(180deg); }
+.face-lang {
+  font-size: 10px; text-transform: uppercase; letter-spacing: .16em;
+  font-weight: 500; margin-bottom: 16px;
+}
+.f-front .face-lang { color: var(--subtle); }
+.f-back  .face-lang { color: var(--coral); }
+.face-it {
+  font-family: var(--serif);
+  font-size: 27px; font-weight: 500; color: var(--dark); line-height: 1.25;
+}
+.face-de {
+  font-family: var(--serif);
+  font-size: 23px; font-weight: 400; font-style: italic;
+  color: var(--dark); line-height: 1.35;
+}
+.face-hint { font-size: 11px; color: var(--subtle); margin-top: 12px; }
+
+/* Nav */
+.fco-nav { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+.nav-btn {
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.08); color: #fff;
+  font-size: 24px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans); line-height: 1; transition: background .2s;
+}
+.nav-btn:hover { background: rgba(255,255,255,.18); }
+.nav-btn:disabled { opacity: .3; cursor: default; }
+.dots { display: flex; gap: 7px; flex-wrap: wrap; justify-content: center; max-width: 260px; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.22); transition: background .2s; }
+.dot.on { background: #fff; }
+.fco-tip { font-size: 12px; color: rgba(255,255,255,.4); text-align: center; }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hdr" id="hdr"></header>
+  <main class="content" id="main"></main>
+</div>
+
+<!-- Flashcard Overlay -->
+<div class="fco" id="fco">
+  <div class="fco-top">
+    <button class="fco-close" onclick="closeFc()" aria-label="Schließen">✕</button>
+    <span class="fco-cnt" id="fc-cnt">1 / 8</span>
+    <span class="fco-wn" id="fc-wn"></span>
+  </div>
+  <div class="scene" onclick="fcFlip()" role="button" aria-label="Karte umdrehen">
+    <div class="inner" id="fc-inner">
+      <div class="face f-front">
+        <div class="face-lang">Italiano</div>
+        <div class="face-it" id="fc-it"></div>
+        <div class="face-hint">Tippe zum Umdrehen</div>
+      </div>
+      <div class="face f-back">
+        <div class="face-lang">Deutsch</div>
+        <div class="face-de" id="fc-de"></div>
+      </div>
+    </div>
+  </div>
+  <div class="fco-nav">
+    <button class="nav-btn" id="fc-prev" onclick="fcNav(-1)" aria-label="Zurück">‹</button>
+    <div class="dots" id="fc-dots"></div>
+    <button class="nav-btn" id="fc-next" onclick="fcNav(1)" aria-label="Weiter">›</button>
+  </div>
+  <div class="fco-tip">Wische oder tippe die Pfeile zum Blättern</div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════ */
+const W = [
+  {
+    color: '#C1440E', cbg: '#FAF0EB', tip_border: '#C1440E',
+    title: 'Al ristorante I',
+    sub:   'Speisekarte & Vokabular aufbauen',
+    chiaro: 'Kapitel Essen & Restaurant – alle Dialoge laut lesen, Wortliste lernen',
+    babbel: 'Modul 9 abschließen + Modul 5 (Essen) wiederholen',
+    pons:   'Kategorie Lebensmittel & Gerichte – 10 Karten täglich',
+    grammar: ['vorrei + Infinitiv', 'mi piace / mi piacciono', 'non + Verb (Verneinung)'],
+    tip: 'YouTube: such nach "come ordinare al ristorante in italiano" – echte Restaurantvideos anschauen und die Sätze mitlesen.',
+    phrases: [
+      { it: 'Il menù, per favore.',                 de: 'Die Speisekarte, bitte.' },
+      { it: 'Cosa consiglia?',                      de: 'Was empfehlen Sie?' },
+      { it: 'Vorrei la bistecca, ben cotta.',        de: 'Ich hätte gerne das Steak, gut durchgebraten.' },
+      { it: 'Sono vegetariano/a.',                  de: 'Ich bin Vegetarier/in.' },
+      { it: 'Ha qualcosa senza glutine?',           de: 'Haben Sie etwas ohne Gluten?' },
+      { it: 'Vorrei un tavolo per due.',            de: 'Ich hätte gerne einen Tisch für zwei.' },
+      { it: 'Come si chiama questo piatto?',        de: 'Wie heißt dieses Gericht?' },
+      { it: 'È piccante?',                          de: 'Ist es scharf?' },
+    ],
+    hw: [
+      '30 Lebensmittelwörter aus Chiaro A2 auswendig lernen',
+      'Vollständige Bestellung schreiben (Vorspeise, Hauptgang, Nachtisch, Getränk)',
+      'PONS-App Tagestest machen und Ergebnis notieren',
+    ],
+  },
+  {
+    color: '#C1440E', cbg: '#FAF0EB',
+    title: 'Al ristorante II',
+    sub:   'Bestellen, bezahlen, reklamieren',
+    chiaro: 'Restaurant-Dialoge aus dem Übungsheft 3× laut lesen und nachsprechen',
+    babbel: 'Aktuelles Modul weiter + Sprachübungen aktivieren',
+    pons:   'Kategorie Gastronomie & Cafés – 10 Karten täglich',
+    grammar: ['Konditional: vorrei, potrei', "Mengenwörter: un po', molto, troppo", 'Indir. Pronomen: mi, ti, Le'],
+    tip: 'ItalianPod101 Podcast: Folge "At the Restaurant" anhören – mehrmals, bis du alles verstehst.',
+    phrases: [
+      { it: 'Il conto, per favore.',                       de: 'Die Rechnung, bitte.' },
+      { it: 'È compreso il servizio?',                     de: 'Ist das Trinkgeld inbegriffen?' },
+      { it: 'Questo non è quello che ho ordinato.',        de: 'Das ist nicht das, was ich bestellt habe.' },
+      { it: 'Era delizioso, complimenti!',                 de: 'Es war köstlich, Kompliment!' },
+      { it: 'Posso pagare con la carta?',                  de: 'Kann ich mit Karte zahlen?' },
+      { it: 'Vorrei un altro bicchiere di vino rosso.',    de: 'Ich hätte gerne noch ein Glas Rotwein.' },
+      { it: 'Siamo pronti per ordinare.',                  de: 'Wir sind bereit zu bestellen.' },
+      { it: "Possiamo avere dell'acqua, per favore?",      de: 'Können wir etwas Wasser haben, bitte?' },
+    ],
+    hw: [
+      'Restaurantgespräch (2 min) aufnehmen – du spielst Kellner UND Gast',
+      '5 Sätze über dein Lieblingsessen auf Italienisch schreiben',
+      'Echte Toskana-Speisekarte online suchen und übersetzen',
+    ],
+  },
+  {
+    color: '#276745', cbg: '#E7F5EE',
+    title: 'Prenotiamo!',
+    sub:   'Tisch reservieren & telefonieren',
+    chiaro: 'Kapitel formelle Kommunikation – Sätze in die höfliche Form umformulieren',
+    babbel: 'Weiter + alle Sätze laut nachsprechen und dabei aufnehmen',
+    pons:   'Kategorie Reise & Unterkunft – 10 Karten täglich',
+    grammar: ['Konditional höflich: vorrei, avrei bisogno di', 'Datum & Uhrzeit (alle Formen!)', 'Höfliche Fragen: Potrebbe…? Ha…?'],
+    tip: 'YouTube: "telefonare in italiano" – schau, wie Italiener am Telefon sprechen und notiere die Ausdrücke.',
+    phrases: [
+      { it: 'Vorrei prenotare un tavolo per stasera.',  de: 'Ich möchte einen Tisch für heute Abend reservieren.' },
+      { it: 'Siamo in quattro persone.',               de: 'Wir sind vier Personen.' },
+      { it: 'A che ora aprite?',                       de: 'Ab wann haben Sie geöffnet?' },
+      { it: 'Potete accomodarci fuori?',               de: 'Können Sie uns draußen platzieren?' },
+      { it: 'La prenotazione è a nome di...',          de: 'Die Reservierung ist auf den Namen...' },
+      { it: 'Vorrei cambiare la prenotazione.',        de: 'Ich würde die Reservierung gerne ändern.' },
+      { it: 'Avete posto per stasera alle otto?',      de: 'Haben Sie heute Abend um acht Plätze frei?' },
+      { it: 'Dobbiamo disdire la prenotazione.',       de: 'Wir müssen die Reservierung stornieren.' },
+    ],
+    hw: [
+      'Drei Reservierungsszenarien schreiben (unterschiedliche Uhrzeiten, Personenzahl)',
+      'Jeden Satz 5× laut lesen, bis er völlig flüssig klingt – Tempo messen',
+      'Alle Zahlen und Uhrzeiten mit der PONS-App testen',
+    ],
+  },
+  {
+    color: '#1E4FA8', cbg: '#EAF0FB',
+    title: 'Dove si trova…?',
+    sub:   'Richtungen fragen & verstehen',
+    chiaro: 'Kapitel Stadt & Orientierung – alle Übungen machen, Stadtplan-Dialoge üben',
+    babbel: 'Weiter + Grammatikübungen zu Imperativ bearbeiten',
+    pons:   'Kategorie Stadt & Verkehr – 10 Karten täglich',
+    grammar: ['Imperativ (formell): giri, vada, continui', 'Präpositionen: a destra, a sinistra, dritto', 'ci vuole / ci vogliono (es dauert…)'],
+    tip: 'Google Maps auf Italienisch stellen – Routen anhören und mitlesen, bis du alles verstehst.',
+    phrases: [
+      { it: 'Scusi, dove si trova il Duomo?',    de: 'Entschuldigung, wo befindet sich der Dom?' },
+      { it: 'Giri a destra al semaforo.',        de: 'Biegen Sie an der Ampel rechts ab.' },
+      { it: 'È lontano? Quanto ci vuole a piedi?', de: 'Ist es weit? Wie lange dauert es zu Fuß?' },
+      { it: 'Mi sono perso/a – può aiutarmi?',  de: 'Ich habe mich verirrt – können Sie mir helfen?' },
+      { it: 'Continui dritto per duecento metri.', de: 'Gehen Sie 200 Meter geradeaus.' },
+      { it: 'È di fronte alla chiesa.',          de: 'Es ist gegenüber der Kirche.' },
+      { it: 'Come si arriva alla stazione?',     de: 'Wie kommt man zum Bahnhof?' },
+      { it: 'Può indicarmi sulla cartina?',      de: 'Können Sie es mir auf der Karte zeigen?' },
+    ],
+    hw: [
+      'Karte von Florenz ausdrucken und 3 Routen auf Italienisch beschreiben',
+      '20 Stadtbegriffe lernen (piazza, semaforo, chiesa, farmacia…)',
+      'Wegbeschreibung vom Hotel zum nächsten Restaurant aufschreiben',
+    ],
+  },
+  {
+    color: '#A86209', cbg: '#FEF4E3',
+    title: 'In giro per la Toscana',
+    sub:   'Markt, Einkaufen & Sehenswürdigkeiten',
+    chiaro: 'Kapitel Einkaufen – alle Übungen + Leseverstehen komplett durcharbeiten',
+    babbel: 'Modul 6 (Sehenswürdigkeiten) nochmals wiederholen',
+    pons:   'Kategorie Einkaufen & Zahlen – 10 Karten täglich',
+    grammar: ['Superlativ: il più bello, la migliore qualità', 'Mengenangaben: ne vorrei un etto', 'Dir. Pronomen: lo, la, li, le'],
+    tip: '"Under the Tuscan Sun" mit ital. Untertiteln schauen – oder YouTube-Clips von toskanischen Märkten.',
+    phrases: [
+      { it: 'Quanto costa questo?',              de: 'Was kostet das?' },
+      { it: 'Ne vorrei due etti, per favore.',   de: 'Ich hätte gerne 200 g davon, bitte.' },
+      { it: 'È fresco di oggi?',                 de: 'Ist es von heute frisch?' },
+      { it: 'Un biglietto per adulti, per favore.', de: 'Eine Erwachseneneintrittskarte, bitte.' },
+      { it: 'Fa lo sconto?',                     de: 'Machen Sie einen Rabatt?' },
+      { it: 'Posso assaggiare?',                 de: 'Darf ich probieren?' },
+      { it: 'A che ora chiude?',                 de: 'Wann schließen Sie?' },
+      { it: 'Mi può incartare, per favore?',     de: 'Können Sie es mir einwickeln, bitte?' },
+    ],
+    hw: [
+      'Einkaufsliste für ein Picknick auf Ital. schreiben (mit genauen Mengen!)',
+      'Preise üben: in 5er-Schritten bis 100, dann in Euro-Beträgen zählen',
+      "Toskana-Ausflug planen: Sätze wie 'Vogliamo visitare…' aufschreiben",
+    ],
+  },
+  {
+    color: '#6B2FA0', cbg: '#F4EDFB',
+    title: 'Generalprobe!',
+    sub:   'Alles zusammen & Notfallsätze',
+    chiaro: 'Alle Kapitel-Reviews + kompletter Selbsttest durcharbeiten',
+    babbel: 'Alle abgeschlossenen Module noch einmal wiederholen',
+    pons:   'Zufällige Kategorien – alle 800 Karten testen',
+    grammar: ['Wiederholung: Konditional, Imperativ, Pronomen', 'Notfall-Vokabular: medico, polizia, farmacia', 'Natürliche Füllwörter & Ausdrücke'],
+    tip: 'Vollständige Tagessimulation: Hotel → Markt → Restaurant → Sehenswürdigkeit – alles auf Ital.!',
+    phrases: [
+      { it: 'Aiuto! Ho bisogno di un medico.',       de: 'Hilfe! Ich brauche einen Arzt.' },
+      { it: 'Parli più lentamente, per favore.',     de: 'Sprechen Sie bitte langsamer.' },
+      { it: 'Non ho capito – può ripetere?',         de: 'Ich habe nicht verstanden – können Sie wiederholen?' },
+      { it: "Com'è bello qui! Mi piace tantissimo.", de: 'Wie schön hier! Es gefällt mir sehr.' },
+      { it: "Dov'è la farmacia più vicina?",         de: 'Wo ist die nächste Apotheke?' },
+      { it: 'Ho perso il portafoglio.',              de: 'Ich habe meine Geldbörse verloren.' },
+      { it: 'Può chiamare un taxi, per favore?',     de: 'Können Sie bitte ein Taxi rufen?' },
+      { it: 'Grazie mille, siete stati gentilissimi!', de: 'Tausend Dank, Sie waren sehr freundlich!' },
+    ],
+    hw: [
+      'Kompletten Toskana-Tag simulieren: alle Situationen der 6 Wochen auf Ital.',
+      'Postkarte aus der Toskana auf Italienisch schreiben',
+      'Persönliche Phrasenliste erstellen: deine besten 30 Sätze zusammenstellen',
+    ],
+  },
+];
+
+/* ═══════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════ */
+let cw   = parseInt(localStorage.getItem('cw') || '0');
+let fcIdx = 0;
+
+/* ═══════════════════════════════════════════
+   STORAGE HELPERS
+═══════════════════════════════════════════ */
+function getHW(w) { return JSON.parse(localStorage.getItem('hw' + w) || '[]'); }
+function saveHW(w, a) { localStorage.setItem('hw' + w, JSON.stringify(a)); }
+
+function toggleHW(w, i) {
+  const a = getHW(w);
+  const p = a.indexOf(i);
+  p === -1 ? a.push(i) : a.splice(p, 1);
+  saveHW(w, a);
+  renderHWSection(w);
+  renderOverallProg();
+}
+
+/* Overall progress across all weeks */
+function totalDone() {
+  return W.reduce((sum, _, i) => sum + getHW(i).length, 0);
+}
+function totalMax() {
+  return W.reduce((sum, w) => sum + w.hw.length, 0);
+}
+
+/* ═══════════════════════════════════════════
+   RENDER: HEADER
+═══════════════════════════════════════════ */
+function renderHdr() {
+  document.getElementById('hdr').innerHTML = `
+    <div class="hdr-row">
+      <div class="brand">Italiano · Toscana</div>
+      <div class="brand-meta">2026 · A2 → Urlaub</div>
+    </div>
+    <div class="overall-prog" id="op">
+      ${W.map((w, i) => {
+        const hw = getHW(i);
+        const pct = Math.round(hw.length / w.hw.length * 100);
+        return `<div class="prog-pip" style="background:${pct > 0 ? w.color + (pct < 100 ? '66' : '') : 'var(--divider)'}"></div>`;
+      }).join('')}
+      <span class="prog-label">${totalDone()}/${totalMax()} Aufgaben</span>
+    </div>
+    <div class="tabs">${W.map((w, i) => `
+      <button class="tab${i === cw ? ' on' : ''}"
+        style="${i === cw ? 'background:' + w.color + ';border-color:' + w.color : ''}"
+        onclick="setWeek(${i})">Woche ${i + 1}</button>
+    `).join('')}</div>
+  `;
+}
+
+function renderOverallProg() {
+  const op = document.getElementById('op');
+  if (!op) return;
+  op.innerHTML = W.map((w, i) => {
+    const hw = getHW(i);
+    const pct = Math.round(hw.length / w.hw.length * 100);
+    return `<div class="prog-pip" style="background:${pct > 0 ? w.color + (pct < 100 ? '88' : '') : 'var(--divider)'}"></div>`;
+  }).join('') + `<span class="prog-label">${totalDone()}/${totalMax()} Aufgaben</span>`;
+}
+
+/* ═══════════════════════════════════════════
+   RENDER: MAIN CONTENT
+═══════════════════════════════════════════ */
+function renderMain() {
+  const w = cw;
+  const d = W[w];
+  document.getElementById('main').innerHTML = `
+    <div class="hero-eyebrow">Woche ${w + 1} von 6</div>
+    <div class="hero-title">${d.title}</div>
+    <div class="hero-sub">${d.sub}</div>
+    <div class="hero-rule" style="background:${d.color}"></div>
+
+    <div class="sec">Täglicher Rhythmus</div>
+    <div class="card">
+      <div class="rhy">
+        <div class="rhy-cell">
+          <div class="rhy-t">Morgens · 10'</div>
+          <div class="rhy-n">Babbel</div>
+          <div class="rhy-d">Streak halten!</div>
+        </div>
+        <div class="rhy-cell">
+          <div class="rhy-t">Tagsüber · 10'</div>
+          <div class="rhy-n">PONS</div>
+          <div class="rhy-d">10 Karten</div>
+        </div>
+        <div class="rhy-cell">
+          <div class="rhy-t">Abends · 40'</div>
+          <div class="rhy-n">Chiaro A2</div>
+          <div class="rhy-d">Buch + Heft</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">Materialien</div>
+    <div class="card">
+      <div class="mat">
+        <div class="mat-icon ic-r">📚</div>
+        <div><div class="mat-lbl">Chiaro A2</div><div class="mat-txt">${d.chiaro}</div></div>
+      </div>
+      <div class="mat">
+        <div class="mat-icon ic-g">📱</div>
+        <div><div class="mat-lbl">Babbel</div><div class="mat-txt">${d.babbel}</div></div>
+      </div>
+      <div class="mat">
+        <div class="mat-icon ic-a">🃏</div>
+        <div><div class="mat-lbl">PONS Vokabelbox</div><div class="mat-txt">${d.pons}</div></div>
+      </div>
+    </div>
+
+    <div class="sec">Grammatikfokus</div>
+    <div class="card">
+      <div class="g-tags">${d.grammar.map(g =>
+        `<span class="g-tag" style="color:${d.color};border-color:${d.color}44;background:${d.cbg}">${g}</span>`
+      ).join('')}</div>
+    </div>
+
+    <div class="sec">Schlüsselsätze</div>
+    <div class="card">
+      <div class="phrase-list">${d.phrases.map((p, i) => `
+        <div class="phrase" onclick="openFc(${i})" role="button" tabindex="0">
+          <div class="p-it">${p.it}</div>
+          <div class="p-de">${p.de}</div>
+        </div>
+      `).join('')}</div>
+      <button class="fc-btn" style="background:${d.color}" onclick="openFc(0)">
+        <span>🃏</span> Flashcard-Modus starten
+      </button>
+    </div>
+
+    <div class="sec">Wochentipp</div>
+    <div class="tip" style="border-left-color:${d.color};background:${d.cbg}">
+      <div class="tip-icon">💡</div>
+      <div>
+        <div class="tip-lbl" style="color:${d.color}">Tipp</div>
+        <div class="tip-body">${d.tip}</div>
+      </div>
+    </div>
+
+    <div class="sec">Hausaufgaben</div>
+    <div class="card" id="hw-card">
+      ${renderHWInner(w)}
+    </div>
+  `;
+}
+
+function renderHWInner(w) {
+  const d  = W[w];
+  const hw = getHW(w);
+  const done = hw.length;
+  const tot  = d.hw.length;
+  const pct  = Math.round(done / tot * 100);
+  return `
+    ${d.hw.map((h, i) => {
+      const ck = hw.includes(i);
+      return `<div class="hw-row" onclick="toggleHW(${w},${i})" role="checkbox" aria-checked="${ck}" tabindex="0">
+        <div class="hw-cb${ck ? ' done' : ''}">✓</div>
+        <div class="hw-label${ck ? ' done' : ''}">${h}</div>
+      </div>`;
+    }).join('')}
+    <div class="hw-prog-wrap">
+      <div class="hw-bar">
+        <div class="hw-fill" style="width:${pct}%;background:${d.color}"></div>
+      </div>
+      <div class="hw-pct">${done}/${tot}</div>
+    </div>
+  `;
+}
+
+function renderHWSection(w) {
+  const card = document.getElementById('hw-card');
+  if (card && w === cw) card.innerHTML = renderHWInner(w);
+}
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+function setWeek(i) {
+  cw = i;
+  localStorage.setItem('cw', i);
+  renderHdr();
+  renderMain();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ═══════════════════════════════════════════
+   FLASHCARDS
+═══════════════════════════════════════════ */
+function openFc(i) {
+  fcIdx = i;
+  document.getElementById('fc-inner').classList.remove('flip');
+  updateFc();
+  document.getElementById('fco').classList.add('vis');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeFc() {
+  document.getElementById('fco').classList.remove('vis');
+  document.body.style.overflow = '';
+}
+
+function fcFlip() {
+  document.getElementById('fc-inner').classList.toggle('flip');
+}
+
+function fcNav(dir) {
+  const len = W[cw].phrases.length;
+  fcIdx = Math.max(0, Math.min(len - 1, fcIdx + dir));
+  document.getElementById('fc-inner').classList.remove('flip');
+  updateFc();
+}
+
+function updateFc() {
+  const d = W[cw];
+  const p = d.phrases[fcIdx];
+  document.getElementById('fc-it').textContent  = p.it;
+  document.getElementById('fc-de').textContent  = p.de;
+  document.getElementById('fc-cnt').textContent = `${fcIdx + 1} / ${d.phrases.length}`;
+  document.getElementById('fc-wn').textContent  = d.title;
+  document.getElementById('fc-prev').disabled   = fcIdx === 0;
+  document.getElementById('fc-next').disabled   = fcIdx === d.phrases.length - 1;
+  document.getElementById('fc-dots').innerHTML  =
+    d.phrases.map((_, i) => `<div class="dot${i === fcIdx ? ' on' : ''}"></div>`).join('');
+}
+
+/* Swipe support for flashcards */
+(function() {
+  let sx = 0;
+  const scene = document.getElementById('fco');
+  scene.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+  scene.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 50) { fcNav(dx < 0 ? 1 : -1); }
+  }, { passive: true });
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('fco').classList.contains('vis')) return;
+    if (e.key === 'ArrowRight') fcNav(1);
+    if (e.key === 'ArrowLeft')  fcNav(-1);
+    if (e.key === ' ' || e.key === 'Enter') fcFlip();
+    if (e.key === 'Escape') closeFc();
+  });
+})();
+
+/* ═══════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════ */
+renderHdr();
+renderMain();
+</script>
+</body>
+</html>
